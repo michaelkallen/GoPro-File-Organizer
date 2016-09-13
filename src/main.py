@@ -5,6 +5,15 @@ import sys
 GOPRO_MAIN_FILE_PREFIX = 'GOPR'
 GOPRO_SHORTENED_FILE_PREFIX = 'GP'
 
+########### Fill in this personal information #########
+# First/Last Name
+OWNER = "First/Last Name" 
+# Contact Phone number
+PHONE_NUMBER = "555-555-5555"
+# Contact email address
+EMAIL = "Email@emaildomain.com"
+#######################################################
+
 
 def main(args):
     if len(args) < 2:
@@ -38,6 +47,16 @@ def main(args):
             old_file_path = folder_location + '/' + val
             os.rename(old_file_path, new_file_path)
 
+def writeContactInfo(args):
+    if OWNER == "First/Last Name" or PHONE_NUMBER == "555-555-5555":
+        print('Error: Personal information not set')
+        sys.exit(1)
+    file = open(args[1]+"\Owner_Contact.txt", "w")
+    file.write("Owner: " + OWNER + "\n")
+    file.write("Number: " + PHONE_NUMBER+ "\n")
+    file.write("EMAIL: " + EMAIL+ "\n")
+    file.close()
 
 if __name__ == '__main__':
     main(sys.argv)
+    writeContactInfo(sys.argv)
